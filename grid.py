@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import argparse
 from PIL import Image, ImageDraw, ImageColor
 
@@ -10,18 +12,21 @@ def drawGrid(
     gridlineWidth: int,
     outputFileName: str,
 ) -> None:
-    width = (dimensions[0] * pixelsPerSquare) + (gridlineWidth * dimensions[0]) + gridlineWidth
-    height = (dimensions[1] * pixelsPerSquare) + (gridlineWidth * dimensions[1]) + gridlineWidth
+    width = (dimensions[0] * pixelsPerSquare)
+    height = (dimensions[1] * pixelsPerSquare)
     img = Image.new("RGBA", (width, height), color=backgroundColor)
     draw = ImageDraw.Draw(img)
     for x in range(0, width, pixelsPerSquare):
-        draw.line((x, 0, x, height), fill=gridColor, width=gridlineWidth)
-    for y in range(0, height, pixelsPerSquare):
-        draw.line((0, y, width, y), fill=gridColor, width=gridlineWidth)
+        for y in range(0, height, pixelsPerSquare):
+            draw.rectangle(
+                [x, y, x + pixelsPerSquare - 1, y + pixelsPerSquare - 1],
+                outline=gridColor,
+                width=gridlineWidth,
+            )
     img.save(outputFileName)
 
 
-def drawColorList() -> None:
+def drawColorList(outputFileName: str) -> None:
     colors = ImageColor.colormap
     cols = 4
     rows = ((len(colors) - 1) // cols) + 1
@@ -45,7 +50,7 @@ def drawColorList() -> None:
             f"{color[0]}: {color[1]}",
             fill=0x0,
         )
-    img.save("colors.png")
+    img.save(outputFileName)
 
 
 def parse_args() -> argparse.Namespace:
@@ -68,7 +73,7 @@ def parse_args() -> argparse.Namespace:
         "--pixelsPerSquare",
         "-s",
         type=int,
-        default=10,
+        default=70,
         help="The number of pixels per square",
     )
     parser.add_argument(
@@ -96,7 +101,7 @@ def parse_args() -> argparse.Namespace:
         "--outputFileName",
         "-o",
         type=str,
-        default="grid.png",
+        default="",
         help="The name of the output file",
     )
     parser.add_argument(
@@ -109,10 +114,20 @@ def parse_args() -> argparse.Namespace:
     return parser.parse_args()
 
 
+def getOutputFileName(args: argparse.Namespace) -> str:
+    fileName = args.outputFileName
+    if not fileName or not fileName.endswith(".png"):
+        if args.colorList:
+            fileName = f"{fileName}colors.png"
+        else:
+            fileName = f"{fileName}grid_{args.width}x{args.height}_s{args.pixelsPerSquare}_l{args.gridlineWidth}.png"
+    return fileName
+
+
 def main() -> None:
     args = parse_args()
     if args.colorList:
-        drawColorList()
+        drawColorList(getOutputFileName(args))
     else:
         drawGrid(
             dimensions=(args.width, args.height),
@@ -120,7 +135,7 @@ def main() -> None:
             backgroundColor=args.backgroundColor,
             gridColor=args.gridColor,
             gridlineWidth=args.gridlineWidth,
-            outputFileName=args.outputFileName,
+            outputFileName=getOutputFileName(args),
         )
 
 

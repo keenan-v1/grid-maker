@@ -1,2 +1,4 @@
 .venv/
 *.png
+# Ignore Mac system files because they're stupid
+.DS_Store
