@@ -60,14 +60,14 @@ def parse_args() -> argparse.Namespace:
         "-W",
         type=int,
         default=10,
-        help="The dimensions of the grid",
+        help="The width of the grid in squares",
     )
     parser.add_argument(
         "--height",
         "-H",
         type=int,
         default=10,
-        help="The dimensions of the grid",
+        help="The height of the grid in squares",
     )    
     parser.add_argument(
         "--pixelsPerSquare",
@@ -81,21 +81,21 @@ def parse_args() -> argparse.Namespace:
         "-b",
         type=str,
         default="#00000000",
-        help="The background color of the grid in RGBA hex format",
+        help="The background color of the grid.",
     )
     parser.add_argument(
         "--gridColor",
         "-g",
         type=str,
         default="#000000FF",
-        help="The color of the grid lines in RGBA hex format",
+        help="The color of the gridlines.",
     )
     parser.add_argument(
         "--gridlineWidth",
         "-l",
         type=int,
         default=1,
-        help="The width of the grid lines",
+        help="The width of the gridlines",
     )
     parser.add_argument(
         "--outputFileName",
