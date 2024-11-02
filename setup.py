@@ -12,4 +12,9 @@ setup(
         "pillow==11.0.0"
     ],
     python_requires=">=3.6",
+    entry_points={
+        "console_scripts": [
+            "gridmaker=gridmaker:main",
+        ],
+    },    
 )
