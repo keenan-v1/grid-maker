@@ -1,9 +1,8 @@
 # Grid Maker
 ## How to use
 1. Make sure you have Python 3 installed.
-2. Create a virtual environment: `python3 -m venv .venv`
-3. Install dependencies: `pip install -r requirements.txt`
-4. Run the script: `python3 grid.py` or `./grid.py` on Linux and Mac
+2. Run: `pip install git+https://github.com/keenan-v1/grid-maker`
+3. See the help file: `gridmaker -h`
 
 ## Usage
 ```
