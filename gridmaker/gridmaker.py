@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-
 import argparse
 from PIL import Image, ImageDraw, ImageColor
 
@@ -137,7 +135,3 @@ def main() -> None:
             gridlineWidth=args.gridlineWidth,
             outputFileName=getOutputFileName(args),
         )
-
-
-if __name__ == "__main__":
-    main()

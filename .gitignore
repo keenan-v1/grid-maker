@@ -1,4 +1,11 @@
-.venv/
-*.png
-# Ignore Mac system files because they're stupid
+# macOS system files
 .DS_Store
+
+# Virtual environments
+.venv/
+
+# Images
+*.png
+
+*.egg-info/
+build/
