@@ -10,8 +10,8 @@ def drawGrid(
     gridlineWidth: int,
     outputFileName: str,
 ) -> None:
-    width = (dimensions[0] * pixelsPerSquare)
-    height = (dimensions[1] * pixelsPerSquare)
+    width = dimensions[0] * pixelsPerSquare
+    height = dimensions[1] * pixelsPerSquare
     img = Image.new("RGBA", (width, height), color=backgroundColor)
     draw = ImageDraw.Draw(img)
     for x in range(0, width, pixelsPerSquare):
@@ -32,7 +32,7 @@ def drawColorList(outputFileName: str) -> None:
     cellWidth = 170
     imageHeight = rows * cellHeight
     imageWidth = cols * cellWidth
-    
+
     img = Image.new("RGBA", (imageWidth, imageHeight), color=0x0)
     draw = ImageDraw.Draw(img)
     for i, color in enumerate(colors.items()):
@@ -66,7 +66,7 @@ def parse_args() -> argparse.Namespace:
         type=int,
         default=10,
         help="The height of the grid in squares",
-    )    
+    )
     parser.add_argument(
         "--pixelsPerSquare",
         "-s",

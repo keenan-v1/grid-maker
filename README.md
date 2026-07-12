@@ -1,8 +1,41 @@
 # Grid Maker
-## How to use
-1. Make sure you have Python 3 installed.
-2. Run: `pip install git+https://github.com/keenan-v1/grid-maker`
-3. See the help file: `gridmaker -h`
+
+## Install
+
+Grid Maker is installed with [uv](https://docs.astral.sh/uv/). uv manages its
+own Python and prefers prebuilt wheels, so you don't need system Python dev
+headers or a compiler (which is what caused the old `pip install` to fail).
+
+### Quick install (script)
+
+```sh
+curl -LsSf https://raw.githubusercontent.com/keenan-v1/grid-maker/main/install.sh | sh
+```
+
+The script bootstraps `uv` if it isn't already installed, then installs the
+`gridmaker` CLI as a uv tool. If you've cloned the repo, you can instead run:
+
+```sh
+./install.sh
+```
+
+### Manual install with uv
+
+```sh
+uv tool install git+https://github.com/keenan-v1/grid-maker
+```
+
+Then see the help: `gridmaker -h`
+
+> [!NOTE]
+> If `gridmaker` isn't found after installing, run `uv tool update-shell` and
+> open a new terminal so uv's tool bin directory is on your `PATH`.
+
+### Run without installing
+
+```sh
+uvx --from git+https://github.com/keenan-v1/grid-maker gridmaker -h
+```
 
 ## Usage
 ```

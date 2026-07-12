@@ -1,6 +1,31 @@
 [build-system]
-requires = ["setuptools", "wheel"]
+requires = ["setuptools>=61", "wheel"]
 build-backend = "setuptools.build_meta"
+
+[project]
+name = "grid_maker"
+version = "0.1.0"
+description = "A utility for creating grid layouts."
+readme = "README.md"
+license = { file = "LICENSE" }
+requires-python = ">=3.9"
+authors = [
+    { name = "Keenan", email = "jonathan@wantsmore.coffee" },
+]
+dependencies = [
+    # Floor chosen so uv/pip resolve to a release with prebuilt wheels
+    # (e.g. cp314), avoiding source builds that need Python dev headers.
+    "pillow>=11.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/keenan-v1/grid-maker"
+
+[project.scripts]
+gridmaker = "gridmaker:main"
+
+[tool.setuptools]
+packages = ["gridmaker"]
 
 [tool.ruff]
 # Exclude a variety of commonly ignored directories.
